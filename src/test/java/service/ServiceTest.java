@@ -21,25 +21,25 @@ public class ServiceTest extends TestCase {
     }
 
     public void testSaveStudent() {
-        assertEquals(0, service.saveStudent("-1", "nume", 455));
-        assertEquals(1, service.saveStudent("7", "test", 455));
+        assertEquals(0, service.saveStudent("-1", "Ana", 933));
+        assertEquals(1, service.saveStudent("1", "Ana", 933));
     }
 
     public void testSaveStudentSuccess() {
-        assertEquals(1, service.saveStudent("2", "Alice", 234));
+        assertEquals(1, service.saveStudent("2", "Ana", 933));
     }
 
     public void testSaveStudentWithEmptyId() {
-        assertEquals(0, service.saveStudent("", "Bob", 355));
+        assertEquals(0, service.saveStudent("", "Ana", 933));
     }
 
     public void testSaveStudentWithNullId() {
-        assertEquals(0, service.saveStudent(null, "Charlie", 444));
+        assertEquals(0, service.saveStudent(null, "Ana", 933));
     }
 
     public void testSaveStudentWithDuplicateId() {
-        assertEquals(1, service.saveStudent("3", "qwe", 535));
-        assertEquals(0, service.saveStudent("3", "qwe", 535));
+        assertEquals(1, service.saveStudent("3", "Ana", 933));
+        assertEquals(0, service.saveStudent("3", "Ana", 933));
     }
 
 }

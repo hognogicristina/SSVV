@@ -25,6 +25,7 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
     }
 
     protected abstract E getEntityFromNode(Element node);
+
     protected abstract Element getElementFromEntity(E entity, Document XMLdocument);
 
     protected void loadFromXmlFile() {
@@ -33,25 +34,21 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
             Element root = XMLdocument.getDocumentElement();
             NodeList list = root.getChildNodes();
 
-            for(int i = 0; i < list.getLength(); i++) {
+            for (int i = 0; i < list.getLength(); i++) {
                 Node node = list.item(i);
                 if (node.getNodeType() == Element.ELEMENT_NODE) {
                     try {
-                        super.save(getEntityFromNode((Element)node));
-                    }
-                    catch(ValidationException ve) {
+                        super.save(getEntityFromNode((Element) node));
+                    } catch (ValidationException ve) {
                         ve.printStackTrace();
                     }
                 }
             }
-        }
-        catch(ParserConfigurationException pce) {
+        } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
-        }
-        catch(SAXException s) {
+        } catch (SAXException s) {
             s.printStackTrace();
-        }
-        catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
         }
     }
@@ -66,14 +63,11 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
             Transformer XMLtransformer = TransformerFactory.newInstance().newTransformer();
             XMLtransformer.setOutputProperty(OutputKeys.INDENT, "yes");
             XMLtransformer.transform(new DOMSource(XMLdocument), new StreamResult(XMLfilename));
-        }
-        catch(ParserConfigurationException pce) {
+        } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
-        }
-        catch(TransformerConfigurationException tce) {
+        } catch (TransformerConfigurationException tce) {
             tce.printStackTrace();
-        }
-        catch(TransformerException te) {
+        } catch (TransformerException te) {
             te.printStackTrace();
         }
     }
@@ -87,11 +81,8 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
     @Override
     public E save(E entity) throws ValidationException {
         E result = super.save(entity);
-        if (result == null) {
-            writeToXmlFile();
-            return null;
-        }
-        return result;
+        writeToXmlFile();
+        return result != null ? entity : null;
     }
 
     @Override
