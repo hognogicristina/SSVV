@@ -42,4 +42,16 @@ public class ServiceTest extends TestCase {
         assertEquals(0, service.saveStudent("3", "Ana", 933));
     }
 
+    public void testSaveStudentWithEmptyName() {
+        assertEquals(0, service.saveStudent("4", "", 933));
+    }
+
+    public void testSaveStudentWithNullName() {
+        assertEquals(0, service.saveStudent("4", null, 933));
+    }
+
+    public void testSaveStudentWithNegativeGroup() {
+        assertEquals(0, service.saveStudent("4", "Ana", -933));
+    }
+
 }
