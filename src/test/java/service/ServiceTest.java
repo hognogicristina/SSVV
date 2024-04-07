@@ -108,4 +108,9 @@ public class ServiceTest extends TestCase {
     public void testSaveAssignmentWithInvalidStartlineAfterDeadline() {
         assertEquals(1, service.saveTema("1", "test", 12, 15));
     }
+
+    public void testSaveAssignmentWithDuplicateId() {
+        assertEquals(1, service.saveTema("1", "test", 12, 15));
+        assertEquals(0, service.saveTema("1", "test", 12, 15));
+    }
 }
