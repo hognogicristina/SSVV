@@ -85,4 +85,27 @@ public class ServiceTest extends TestCase {
         assertEquals(1, service.saveTema("1", "", 12, 10));
     }
 
+    public void testSaveAssignmentWithInvalidDeadlineLessThanOne() {
+        assertEquals(1, service.saveTema("1", "test", 0, 10));
+    }
+
+    public void testSaveAssignmentWithInvalidDeadlineGreaterThanFourteen() {
+        assertEquals(1, service.saveTema("1", "test", 15, 10));
+    }
+
+    public void testSaveAssignmentWithInvalidDeadlineBeforeStartline() {
+        assertEquals(1, service.saveTema("1", "test", 5, 10));
+    }
+
+    public void testSaveAssignmentWithInvalidStartlineLessThanOne() {
+        assertEquals(1, service.saveTema("1", "test", 12, 0));
+    }
+
+    public void testSaveAssignmentWithInvalidStartlineGreaterThanFourteen() {
+        assertEquals(1, service.saveTema("1", "test", 12, 15));
+    }
+
+    public void testSaveAssignmentWithInvalidStartlineAfterDeadline() {
+        assertEquals(1, service.saveTema("1", "test", 12, 15));
+    }
 }
