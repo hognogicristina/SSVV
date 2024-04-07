@@ -113,4 +113,9 @@ public class ServiceTest extends TestCase {
         assertEquals(1, service.saveTema("1", "test", 12, 15));
         assertEquals(0, service.saveTema("1", "test", 12, 15));
     }
+
+    public void testSaveAssignment() {
+        assertEquals(0, service.saveTema("-1", "test", 12, 10));
+        assertEquals(1, service.saveTema("1", "test", 12, 10));
+    }
 }
