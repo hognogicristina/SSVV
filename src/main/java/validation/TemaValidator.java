@@ -6,15 +6,9 @@ public class TemaValidator implements Validator<Tema> {
         String idStr = tema.getID();
         if (idStr == null || idStr.isEmpty()) {
             throw new ValidationException("ID invalid! \n");
-        } else {
-            try {
-                int id = Integer.parseInt(idStr);
-                if (id < 0) {
-                    throw new ValidationException("ID must be a non-negative integer! \n");
-                }
-            } catch (NumberFormatException e) {
-                throw new ValidationException("ID must be a valid integer! \n");
-            }
+        }
+        if (Integer.parseInt(idStr) < 0) {
+            throw new ValidationException("ID must be a non-negative integer! \n");
         }
         if (tema.getDescriere() == null || tema.getDescriere().equals("")) { // 4
             throw new ValidationException("Descriere invalida! \n"); // 5
