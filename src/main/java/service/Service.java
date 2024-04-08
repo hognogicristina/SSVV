@@ -47,13 +47,19 @@ public class Service {
     }
 
     public int saveTema(String id, String descriere, int deadline, int startline) {
+        if (id == null) {
+            return 0;
+        }
+
+        Tema existingTema = temaXmlRepo.findOne(id);
+        if (existingTema != null) {
+            return 0;
+        }
+
         Tema tema = new Tema(id, descriere, deadline, startline);
         Tema result = temaXmlRepo.save(tema);
 
-        if (result == null) {
-            return 1;
-        }
-        return 0;
+        return result == null ? 0 : 1;
     }
 
     public int saveNota(String idStudent, String idTema, double valNota, int predata, String feedback) {

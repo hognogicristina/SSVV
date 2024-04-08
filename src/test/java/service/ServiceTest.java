@@ -70,52 +70,52 @@ public class ServiceTest extends TestCase {
 
     /** ASSIGNMENT **/
     public void testSaveAssignmentWithNullId() {
-        assertEquals(1, service.saveTema(null, "test", 12, 10));
+        assertEquals(0, service.saveTema(null, "test", 12, 10));
     }
 
     public void testSaveAssignmentWithEmptyId() {
-        assertEquals(1, service.saveTema("", "test", 12, 10));
+        assertEquals(0, service.saveTema("", "test", 12, 10));
     }
 
     public void testSaveAssignmentWithNullDescription() {
-        assertEquals(1, service.saveTema("1", null, 12, 10));
+        assertEquals(0, service.saveTema("1", null, 12, 10));
     }
 
     public void testSaveAssignmentWithEmptyDescription() {
-        assertEquals(1, service.saveTema("1", "", 12, 10));
+        assertEquals(0, service.saveTema("1", "", 12, 10));
     }
 
     public void testSaveAssignmentWithInvalidDeadlineLessThanOne() {
-        assertEquals(1, service.saveTema("1", "test", 0, 10));
+        assertEquals(0, service.saveTema("1", "test", 0, 10));
     }
 
     public void testSaveAssignmentWithInvalidDeadlineGreaterThanFourteen() {
-        assertEquals(1, service.saveTema("1", "test", 15, 10));
+        assertEquals(0, service.saveTema("1", "test", 15, 10));
     }
 
     public void testSaveAssignmentWithInvalidDeadlineBeforeStartline() {
-        assertEquals(1, service.saveTema("1", "test", 5, 10));
+        assertEquals(0, service.saveTema("1", "test", 5, 10));
     }
 
     public void testSaveAssignmentWithInvalidStartlineLessThanOne() {
-        assertEquals(1, service.saveTema("1", "test", 12, 0));
+        assertEquals(0, service.saveTema("1", "test", 12, 0));
     }
 
     public void testSaveAssignmentWithInvalidStartlineGreaterThanFourteen() {
-        assertEquals(1, service.saveTema("1", "test", 12, 15));
+        assertEquals(0, service.saveTema("1", "test", 12, 15));
     }
 
     public void testSaveAssignmentWithInvalidStartlineAfterDeadline() {
-        assertEquals(1, service.saveTema("1", "test", 12, 15));
+        assertEquals(0, service.saveTema("1", "test", 12, 15));
     }
 
     public void testSaveAssignmentWithDuplicateId() {
-        assertEquals(1, service.saveTema("1", "test", 12, 15));
-        assertEquals(0, service.saveTema("1", "test", 12, 15));
+        assertEquals(1, service.saveTema("2", "test", 12, 10));
+        assertEquals(0, service.saveTema("2", "test", 12, 10));
     }
 
     public void testSaveAssignment() {
         assertEquals(0, service.saveTema("-1", "test", 12, 10));
-        assertEquals(1, service.saveTema("1", "test", 12, 10));
+        assertEquals(1, service.saveTema("3", "test", 12, 10));
     }
 }

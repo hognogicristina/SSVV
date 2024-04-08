@@ -3,8 +3,18 @@ import domain.Tema;
 
 public class TemaValidator implements Validator<Tema> {
     public void validate(Tema tema) throws ValidationException {
-        if (tema.getID() == null || tema.getID().equals("")) { // 2
-            throw new ValidationException("ID invalid! \n"); // 3
+        String idStr = tema.getID();
+        if (idStr == null || idStr.isEmpty()) {
+            throw new ValidationException("ID invalid! \n");
+        } else {
+            try {
+                int id = Integer.parseInt(idStr);
+                if (id < 0) {
+                    throw new ValidationException("ID must be a non-negative integer! \n");
+                }
+            } catch (NumberFormatException e) {
+                throw new ValidationException("ID must be a valid integer! \n");
+            }
         }
         if (tema.getDescriere() == null || tema.getDescriere().equals("")) { // 4
             throw new ValidationException("Descriere invalida! \n"); // 5
