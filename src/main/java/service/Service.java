@@ -1,7 +1,12 @@
 package service;
 
-import domain.*;
-import repository.*;
+import domain.Nota;
+import domain.Pair;
+import domain.Student;
+import domain.Tema;
+import repository.NotaXMLRepository;
+import repository.StudentXMLRepository;
+import repository.TemaXMLRepository;
 
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
@@ -73,13 +78,10 @@ public class Service {
             } else {
                 valNota = valNota - 2.5 * (predata - deadline);
             }
-            Nota nota = new Nota(new Pair(idStudent, idTema), valNota, predata, feedback);
+            Nota nota = new Nota(new Pair<>(idStudent, idTema), valNota, predata, feedback);
             Nota result = notaXmlRepo.save(nota);
 
-            if (result == null) {
-                return 1;
-            }
-            return 0;
+            return result == null ? 0 : 1;
         }
     }
 

@@ -1,10 +1,13 @@
 package service;
 
+import domain.Nota;
 import domain.Student;
 import domain.Tema;
 import junit.framework.TestCase;
+import repository.NotaXMLRepository;
 import repository.StudentXMLRepository;
 import repository.TemaXMLRepository;
+import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.Validator;
@@ -14,10 +17,14 @@ public class ServiceTest extends TestCase {
     private Validator<Student> studentValidator;
     
     private Validator<Tema> temaValidator;
+
+    private Validator<Nota> notaValidator;
     
     private StudentXMLRepository studentXMLRepository;
     
     private TemaXMLRepository temaXMLRepository;
+
+    private NotaXMLRepository notaXMLRepository;
     
     private Service service;
 
@@ -26,11 +33,13 @@ public class ServiceTest extends TestCase {
         super.setUp();
         studentValidator = new StudentValidator();
         temaValidator = new TemaValidator();
+        notaValidator = new NotaValidator();
         
         studentXMLRepository = new StudentXMLRepository(studentValidator, "studenti.xml");
         temaXMLRepository = new TemaXMLRepository(temaValidator, "teme.xml");
+        notaXMLRepository = new NotaXMLRepository(notaValidator, "note.xml");
         
-        service = new Service(studentXMLRepository, temaXMLRepository, null);
+        service = new Service(studentXMLRepository, temaXMLRepository, notaXMLRepository);
     }
 
     /** STUDENT **/
@@ -117,5 +126,12 @@ public class ServiceTest extends TestCase {
     public void testSaveAssignment() {
         assertEquals(0, service.saveTema("-1", "test", 12, 10));
         assertEquals(1, service.saveTema("3", "test", 12, 10));
+    }
+
+    /** GRADE **/
+    public void testSaveGradeSuccess() {
+        assertEquals(1, service.saveStudent("10", "Ana", 933));
+        assertEquals(1, service.saveTema("10", "test", 12, 10));
+        assertEquals(1, service.saveNota("10", "10", 10, 10, "test"));
     }
 }
