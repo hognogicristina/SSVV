@@ -4,11 +4,8 @@ import domain.Tema;
 public class TemaValidator implements Validator<Tema> {
     public void validate(Tema tema) throws ValidationException {
         String idStr = tema.getID();
-        if (idStr == null || idStr.isEmpty()) {
+        if (idStr == null || idStr.isEmpty() || Integer.parseInt(idStr) < 0) {
             throw new ValidationException("ID invalid! \n");
-        }
-        if (Integer.parseInt(idStr) < 0) {
-            throw new ValidationException("ID must be a non-negative integer! \n");
         }
         if (tema.getDescriere() == null || tema.getDescriere().equals("")) { // 4
             throw new ValidationException("Descriere invalida! \n"); // 5
