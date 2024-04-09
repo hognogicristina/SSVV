@@ -15,15 +15,12 @@ import validation.StudentValidator;
 import validation.TemaValidator;
 import validation.Validator;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static service.ServiceTest.*;
 
 public class BigBangIntegrationTest {
     private Service service;
@@ -53,36 +50,6 @@ public class BigBangIntegrationTest {
         new File("studentiT.xml").delete();
         new File("temeT.xml").delete();
         new File("noteT.xml").delete();
-    }
-
-    static protected void createStudentsXML() {
-        File xml = new File("studentiT.xml");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static protected void createAssignmentsXML() {
-        File xml = new File("temeT.xml");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static protected void createNoteXML() {
-        File xml = new File("noteT.xml");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
