@@ -37,16 +37,16 @@ public class ServiceTest {
     private Service service;
 
     @BeforeEach
-    protected void setUp() throws Exception {
-        studentValidator = new StudentValidator();
-        temaValidator = new TemaValidator();
-        notaValidator = new NotaValidator();
+    protected void setUp() {
+        this.studentValidator = new StudentValidator();
+        this.temaValidator = new TemaValidator();
+        this.notaValidator = new NotaValidator();
 
-        studentXMLRepository = new StudentXMLRepository(studentValidator, "studentiT.xml");
-        temaXMLRepository = new TemaXMLRepository(temaValidator, "temeT.xml");
-        notaXMLRepository = new NotaXMLRepository(notaValidator, "noteT.xml");
+        this.studentXMLRepository = new StudentXMLRepository(this.studentValidator, "studentiT.xml");
+        this.temaXMLRepository = new TemaXMLRepository(this.temaValidator, "temeT.xml");
+        this.notaXMLRepository = new NotaXMLRepository(this.notaValidator, "noteT.xml");
 
-        service = new Service(studentXMLRepository, temaXMLRepository, notaXMLRepository);
+        this.service = new Service(this.studentXMLRepository, this.temaXMLRepository, this.notaXMLRepository);
     }
 
     @AfterEach

@@ -29,7 +29,7 @@ public class BigBangIntegrationTest {
     private NotaXMLRepository notaXMLRepository;
 
     @BeforeEach
-    void setUp() {
+    protected void setUp() {
         createStudentsXML();
         createAssignmentsXML();
         createNoteXML();
@@ -38,11 +38,11 @@ public class BigBangIntegrationTest {
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
 
-        studentXMLRepository = new StudentXMLRepository(studentValidator, "studentiT.xml");
-        temaXMLRepository = new TemaXMLRepository(temaValidator, "temeT.xml");
-        notaXMLRepository = new NotaXMLRepository(notaValidator, "noteT.xml");
+        this.studentXMLRepository = new StudentXMLRepository(studentValidator, "studentiT.xml");
+        this.temaXMLRepository = new TemaXMLRepository(temaValidator, "temeT.xml");
+        this.notaXMLRepository = new NotaXMLRepository(notaValidator, "noteT.xml");
 
-        service = new Service(studentXMLRepository, temaXMLRepository, notaXMLRepository);
+        this.service = new Service(this.studentXMLRepository, this.temaXMLRepository, this.notaXMLRepository);
     }
 
     @AfterEach
@@ -56,7 +56,7 @@ public class BigBangIntegrationTest {
     public void testSaveStudent() {
         assertDoesNotThrow(() -> this.service.saveStudent("10", "iakab", 345));
 
-        Iterable<Student> students = studentXMLRepository.findAll();
+        Iterable<Student> students = this.studentXMLRepository.findAll();
         ArrayList<Student> studentList = new ArrayList<>();
         students.forEach(studentList::add);
 
@@ -70,7 +70,7 @@ public class BigBangIntegrationTest {
     public void testSaveTema() {
         assertDoesNotThrow(() -> this.service.saveTema("10", "buna ziua", 5, 2));
 
-        Iterable<Tema> assignments = temaXMLRepository.findAll();
+        Iterable<Tema> assignments = this.temaXMLRepository.findAll();
         ArrayList<Tema> assignmentList = new ArrayList<>();
         assignments.forEach(assignmentList::add);
 
@@ -92,15 +92,15 @@ public class BigBangIntegrationTest {
         assertDoesNotThrow(() -> this.service.saveTema("10", "buna ziua", 2, 1));
         assertDoesNotThrow(() -> this.service.saveNota("10", "10", 2, 5, "meow"));
 
-        Iterable<Student> students = studentXMLRepository.findAll();
+        Iterable<Student> students = this.studentXMLRepository.findAll();
         ArrayList<Student> studentList = new ArrayList<>();
         students.forEach(studentList::add);
 
-        Iterable<Tema> assignments = temaXMLRepository.findAll();
+        Iterable<Tema> assignments = this.temaXMLRepository.findAll();
         ArrayList<Tema> assignmentList = new ArrayList<>();
         assignments.forEach(assignmentList::add);
 
-        Iterable<Nota> grades = notaXMLRepository.findAll();
+        Iterable<Nota> grades = this.notaXMLRepository.findAll();
         ArrayList<Nota> gradeList = new ArrayList<>();
         grades.forEach(gradeList::add);
 
