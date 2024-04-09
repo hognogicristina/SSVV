@@ -91,44 +91,44 @@ public class ServiceTest {
      **/
     @org.junit.jupiter.api.Test
     public void testSaveStudent() {
-        assertEquals(0, service.saveStudent("-1", "Ana", 933));
-        assertEquals(1, service.saveStudent("1", "Ana", 933));
+        assertEquals(0, this.service.saveStudent("-1", "Ana", 933));
+        assertEquals(1, this.service.saveStudent("1", "Ana", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentSuccess() {
-        assertEquals(1, service.saveStudent("2", "Ana", 933));
+        assertEquals(1, this.service.saveStudent("2", "Ana", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithEmptyId() {
-        assertEquals(0, service.saveStudent("", "Ana", 933));
+        assertEquals(0, this.service.saveStudent("", "Ana", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithNullId() {
-        assertEquals(0, service.saveStudent(null, "Ana", 933));
+        assertEquals(0, this.service.saveStudent(null, "Ana", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithDuplicateId() {
-        assertEquals(1, service.saveStudent("3", "Ana", 933));
-        assertEquals(0, service.saveStudent("3", "Ana", 933));
+        assertEquals(1, this.service.saveStudent("3", "Ana", 933));
+        assertEquals(0, this.service.saveStudent("3", "Ana", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithEmptyName() {
-        assertEquals(0, service.saveStudent("4", "", 933));
+        assertEquals(0, this.service.saveStudent("4", "", 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithNullName() {
-        assertEquals(0, service.saveStudent("4", null, 933));
+        assertEquals(0, this.service.saveStudent("4", null, 933));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveStudentWithNegativeGroup() {
-        assertEquals(0, service.saveStudent("4", "Ana", -933));
+        assertEquals(0, this.service.saveStudent("4", "Ana", -933));
     }
 
     /**
@@ -136,63 +136,63 @@ public class ServiceTest {
      **/
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithNullId() {
-        assertEquals(0, service.saveTema(null, "test", 12, 10));
+        assertEquals(0, this.service.saveTema(null, "test", 12, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithEmptyId() {
-        assertEquals(0, service.saveTema("", "test", 12, 10));
+        assertEquals(0, this.service.saveTema("", "test", 12, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithNullDescription() {
-        assertEquals(0, service.saveTema("1", null, 12, 10));
+        assertEquals(0, this.service.saveTema("1", null, 12, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithEmptyDescription() {
-        assertEquals(0, service.saveTema("1", "", 12, 10));
+        assertEquals(0, this.service.saveTema("1", "", 12, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidDeadlineLessThanOne() {
-        assertEquals(0, service.saveTema("1", "test", 0, 10));
+        assertEquals(0, this.service.saveTema("1", "test", 0, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidDeadlineGreaterThanFourteen() {
-        assertEquals(0, service.saveTema("1", "test", 15, 10));
+        assertEquals(0, this.service.saveTema("1", "test", 15, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidDeadlineBeforeStartline() {
-        assertEquals(0, service.saveTema("1", "test", 5, 10));
+        assertEquals(0, this.service.saveTema("1", "test", 5, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidStartlineLessThanOne() {
-        assertEquals(0, service.saveTema("1", "test", 12, 0));
+        assertEquals(0, this.service.saveTema("1", "test", 12, 0));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidStartlineGreaterThanFourteen() {
-        assertEquals(0, service.saveTema("1", "test", 12, 15));
+        assertEquals(0, this.service.saveTema("1", "test", 12, 15));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithInvalidStartlineAfterDeadline() {
-        assertEquals(0, service.saveTema("1", "test", 12, 15));
+        assertEquals(0, this.service.saveTema("1", "test", 12, 15));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignmentWithDuplicateId() {
-        assertEquals(1, service.saveTema("2", "test", 12, 10));
-        assertEquals(0, service.saveTema("2", "test", 12, 10));
+        assertEquals(1, this.service.saveTema("2", "test", 12, 10));
+        assertEquals(0, this.service.saveTema("2", "test", 12, 10));
     }
 
     @org.junit.jupiter.api.Test
     public void testSaveAssignment() {
-        assertEquals(0, service.saveTema("-1", "test", 12, 10));
-        assertEquals(1, service.saveTema("3", "test", 12, 10));
+        assertEquals(0, this.service.saveTema("-1", "test", 12, 10));
+        assertEquals(1, this.service.saveTema("3", "test", 12, 10));
     }
 }

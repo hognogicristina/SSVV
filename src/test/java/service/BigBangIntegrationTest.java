@@ -54,7 +54,7 @@ public class BigBangIntegrationTest {
 
     @Test
     public void testSaveStudent() {
-        assertDoesNotThrow(() -> service.saveStudent("10", "iakab", 345));
+        assertDoesNotThrow(() -> this.service.saveStudent("10", "iakab", 345));
 
         Iterable<Student> students = studentXMLRepository.findAll();
         ArrayList<Student> studentList = new ArrayList<>();
@@ -68,7 +68,7 @@ public class BigBangIntegrationTest {
 
     @Test
     public void testSaveTema() {
-        assertDoesNotThrow(() -> service.saveTema("10", "buna ziua", 5, 2));
+        assertDoesNotThrow(() -> this.service.saveTema("10", "buna ziua", 5, 2));
 
         Iterable<Tema> assignments = temaXMLRepository.findAll();
         ArrayList<Tema> assignmentList = new ArrayList<>();
@@ -83,14 +83,14 @@ public class BigBangIntegrationTest {
 
     @Test
     public void testSaveNota() {
-        assertEquals(-1, service.saveNota("10", "10", 2, 5, "meow"));
+        assertEquals(-1, this.service.saveNota("10", "10", 2, 5, "meow"));
     }
 
     @Test
     public void testAll() {
-        assertDoesNotThrow(() -> service.saveStudent("10", "iakab", 345));
-        assertDoesNotThrow(() -> service.saveTema("10", "buna ziua", 2, 1));
-        assertDoesNotThrow(() -> service.saveNota("10", "10", 2, 5, "meow"));
+        assertDoesNotThrow(() -> this.service.saveStudent("10", "iakab", 345));
+        assertDoesNotThrow(() -> this.service.saveTema("10", "buna ziua", 2, 1));
+        assertDoesNotThrow(() -> this.service.saveNota("10", "10", 2, 5, "meow"));
 
         Iterable<Student> students = studentXMLRepository.findAll();
         ArrayList<Student> studentList = new ArrayList<>();
