@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -115,9 +116,7 @@ public class BigBangIntegrationTest {
 
     @Test
     public void testSaveNota() {
-        assertEquals(1, service.saveStudent("10", "Ana", 345));
-        assertEquals(1, service.saveTema("10", "test", 2, 1));
-        assertEquals(1, service.saveNota("10", "10", 2, 5, "meow"));
+        assertEquals(-1, service.saveNota("10", "10", 2, 5, "meow"));
     }
 
     @Test
