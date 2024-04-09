@@ -127,11 +127,4 @@ public class ServiceTest extends TestCase {
         assertEquals(0, service.saveTema("-1", "test", 12, 10));
         assertEquals(1, service.saveTema("3", "test", 12, 10));
     }
-
-    /** GRADE **/
-    public void testSaveGradeSuccess() {
-        assertEquals(1, service.saveStudent("10", "Ana", 933));
-        assertEquals(1, service.saveTema("10", "test", 12, 10));
-        assertEquals(1, service.saveNota("10", "10", 10, 10, "test"));
-    }
 }

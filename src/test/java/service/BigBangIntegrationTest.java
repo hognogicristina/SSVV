@@ -40,22 +40,22 @@ public class BigBangIntegrationTest {
         Validator<Tema> temaValidator = new TemaValidator();
         Validator<Nota> notaValidator = new NotaValidator();
 
-        studentXMLRepository = new StudentXMLRepository(studentValidator, "studenti.xml");
-        temaXMLRepository = new TemaXMLRepository(temaValidator, "teme.xml");
-        notaXMLRepository = new NotaXMLRepository(notaValidator, "note.xml");
+        studentXMLRepository = new StudentXMLRepository(studentValidator, "studentiT.xml");
+        temaXMLRepository = new TemaXMLRepository(temaValidator, "temeT.xml");
+        notaXMLRepository = new NotaXMLRepository(notaValidator, "noteT.xml");
 
         service = new Service(studentXMLRepository, temaXMLRepository, notaXMLRepository);
     }
 
     @AfterEach
     protected void removeXML() {
-        new File("studenti.xml").delete();
-        new File("teme.xml").delete();
-        new File("note.xml").delete();
+        new File("studentiT.xml").delete();
+        new File("temeT.xml").delete();
+        new File("noteT.xml").delete();
     }
 
     static protected void createStudentsXML() {
-        File xml = new File("studenti.xml");
+        File xml = new File("studentiT.xml");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
             writer.flush();
@@ -65,7 +65,7 @@ public class BigBangIntegrationTest {
     }
 
     static protected void createAssignmentsXML() {
-        File xml = new File("teme.xml");
+        File xml = new File("temeT.xml");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
             writer.flush();
@@ -75,7 +75,7 @@ public class BigBangIntegrationTest {
     }
 
     static protected void createNoteXML() {
-        File xml = new File("note.xml");
+        File xml = new File("noteT.xml");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(xml))) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<inbox>\n" + "\n" + "</inbox>");
             writer.flush();
