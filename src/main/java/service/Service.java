@@ -78,7 +78,12 @@ public class Service {
             int deadline = temaXmlRepo.findOne(idTema).getDeadline();
 
             if (predata > deadline) {
-                valNota -= Math.abs(predata - deadline);
+                double newValNota = Math.abs(predata - deadline);
+                if (valNota - newValNota < 1) {
+                    valNota = 1;
+                } else {
+                    valNota -= newValNota;
+                }
             }
 
             Nota nota = new Nota(new Pair<>(idStudent, idTema), valNota, predata, feedback);
