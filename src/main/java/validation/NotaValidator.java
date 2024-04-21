@@ -1,4 +1,5 @@
 package validation;
+
 import domain.Nota;
 
 public class NotaValidator implements Validator<Nota> {
@@ -14,6 +15,9 @@ public class NotaValidator implements Validator<Nota> {
         }
         if (nota.getSaptamanaPredare() < 0) {
             throw new ValidationException("Saptamana de predare invalida! \n");
+        }
+        if (nota.getFeedback().isEmpty()) {
+            throw new ValidationException("Feedback invalid! \n");
         }
     }
 }
