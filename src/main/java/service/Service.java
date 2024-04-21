@@ -8,14 +8,16 @@ import repository.NotaXMLRepository;
 import repository.StudentXMLRepository;
 import repository.TemaXMLRepository;
 
+import java.lang.Math;
+
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
 public class Service {
-    private StudentXMLRepository studentXmlRepo;
-    private TemaXMLRepository temaXmlRepo;
-    private NotaXMLRepository notaXmlRepo;
+    private final StudentXMLRepository studentXmlRepo;
+    private final TemaXMLRepository temaXmlRepo;
+    private final NotaXMLRepository notaXmlRepo;
 
     public Service(StudentXMLRepository studentXmlRepo, TemaXMLRepository temaXmlRepo, NotaXMLRepository notaXmlRepo) {
         this.studentXmlRepo = studentXmlRepo;
@@ -73,11 +75,10 @@ public class Service {
         } else {
             int deadline = temaXmlRepo.findOne(idTema).getDeadline();
 
-            if (predata - deadline > 2) {
-                valNota = 1;
-            } else {
-                valNota = valNota - 2.5 * (predata - deadline);
+            if (predata > deadline) {
+                valNota -= Math.abs(predata - deadline);
             }
+
             Nota nota = new Nota(new Pair<>(idStudent, idTema), valNota, predata, feedback);
             Nota result = notaXmlRepo.save(nota);
 
